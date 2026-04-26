@@ -29,8 +29,7 @@ pipeline {
             echo 'GitHub Pipeline Failed'
         }
     }
-}
-post {
+    post {
     success {
         emailext(
             subject: 'Build Successful',
@@ -45,4 +44,6 @@ post {
             to: 'aryadevkar403@gmail.com'
         )
     }
+}
+
 }
