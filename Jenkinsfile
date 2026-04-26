@@ -30,3 +30,19 @@ pipeline {
         }
     }
 }
+post {
+    success {
+        emailext(
+            subject: 'Build Successful',
+            body: 'Pipeline executed successfully',
+            to: 'aryadevkar403@gmail.com'
+        )
+    }
+    failure {
+        emailext(
+            subject: 'Build Failed',
+            body: 'Pipeline failed',
+            to: 'aryadevkar403@gmail.com'
+        )
+    }
+}
