@@ -2,48 +2,28 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Code checked from GitHub'
-            }
-        }
-
         stage('Build') {
             steps {
-                echo 'Build stage executed'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Test stage executed'
+                echo 'Build running'
             }
         }
     }
 
     post {
         success {
-            echo 'GitHub Pipeline Successful'
+            emailext(
+                subject: 'Jenkins Build Successful',
+                body: 'The Jenkins pipeline executed successfully.',
+                to: 'your_email@gmail.com'
+            )
         }
-        failure {
-            echo 'GitHub Pipeline Failed'
-        }
-    }
-    post {
-    success {
-        emailext(
-            subject: 'Build Successful',
-            body: 'Pipeline executed successfully',
-            to: 'aryadevkar403@gmail.com'
-        )
-    }
-    failure {
-        emailext(
-            subject: 'Build Failed',
-            body: 'Pipeline failed',
-            to: 'aryadevkar403@gmail.com'
-        )
-    }
-}
 
+        failure {
+            emailext(
+                subject: 'Jenkins Build Failed',
+                body: 'The Jenkins pipeline failed. Please check console output.',
+                to: 'your_email@gmail.com'
+            )
+        }
+    }
 }
