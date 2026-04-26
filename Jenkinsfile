@@ -19,6 +19,7 @@ pipeline {
         }
 
         failure {
+<<<<<<< HEAD
             emailext(
                 subject: 'Jenkins Build Failed',
                 body: 'The Jenkins pipeline failed. Please check console output.',
@@ -27,3 +28,9 @@ pipeline {
         }
     }
 }
+=======
+            echo 'GitHub Pipeline Failed'
+        }
+    }
+}
+>>>>>>> 69e526d (Fix Jenkins pipeline)
